@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: height * .085,
                   prefix: Icons.email_outlined,
                   controller: textEditingControllerEmail,
-                  lable: "Email",
+                  lable:"Email" ,
                   validator: (String? val) {
                     if (val!.isEmpty) {
                       return "Please enter your email.";
@@ -72,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             false ||
                         textEditingControllerEmail.text.contains(".") ==
                             false) {
+                      // textEditingControllerEmail.clear();
                       return "Please enter a valid email";
                     }
                     return null;

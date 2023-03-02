@@ -10,8 +10,8 @@ class AnimatedListScreen extends StatefulWidget {
 }
 
 class _AnimatedListScreenState extends State<AnimatedListScreen> {
-  int x = 3;
-  List<String> items = ["item1", "item2", "item3"];
+  int x = -1;
+  List<String> items = [];
   final key = GlobalKey<AnimatedListState>();
   @override
   Widget build(BuildContext context) {
@@ -126,7 +126,7 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
 
   void insertItem(int index) {
     x++;
-    items.insert(index, "itemN $x");
+    items.insert(index, "item $x");
     key.currentState?.insertItem(index);
   }
 }

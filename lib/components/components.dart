@@ -22,10 +22,10 @@ Widget defaultFormField({
     Container(
       margin: EdgeInsets.all(8.0),
       padding: EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: greyColor.withOpacity(0.3),
-        borderRadius: BorderRadius.circular(radiusFormField),
-      ),
+      // decoration: BoxDecoration(
+      //   color: greyColor.withOpacity(0.3),
+      //   borderRadius: BorderRadius.circular(radiusFormField),
+      // ),
       width: width,
       height: height,
       child: TextFormField(
@@ -50,7 +50,17 @@ Widget defaultFormField({
                   ),
                 )
               : null,
-          border: InputBorder.none,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(radiusFormField),
+            borderSide: BorderSide(
+              color: greyColor.withOpacity(0.3),
+            ),
+          ),
+
+          // focusedBorder: InputBorder.none,
+          // errorBorder: InputBorder.none,
+          // disabledBorder: InputBorder.none,
+          // contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
         ),
       ),
     );
