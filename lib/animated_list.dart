@@ -10,7 +10,7 @@ class AnimatedListScreen extends StatefulWidget {
 }
 
 class _AnimatedListScreenState extends State<AnimatedListScreen> {
-  int x = 0;
+  int x = 3;
   List<String> items = ["item1", "item2", "item3"];
   final key = GlobalKey<AnimatedListState>();
   @override
@@ -29,7 +29,7 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
           defaultButton(
               function: () {
                 // setState(() {});
-                insertItem(2);
+                insertItem(0);
               },
               text: "+",
               width: width * .2,
@@ -84,31 +84,35 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
     );
   }
 
-  Widget buildCardDeleteAnimation(double width, double height, int index) {
-    return Container(
-      height: height / 10,
-      width: width * .9,
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: redColor,
-          boxShadow: [
-            BoxShadow(
-              color: greyColor.withOpacity(.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3),
-            ),
-          ]),
-      child: Center(
-          child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width * .02),
-        child: Row(
-          children: [
-            Text("Deleted"),
-          ],
-        ),
-      )),
+  Widget buildCardDeleteAnimation(
+      double width, double height, int index, Animation<double> animation) {
+    return SizeTransition(
+      sizeFactor: animation,
+      child: Container(
+        height: height / 10,
+        width: width * .9,
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: redColor,
+            boxShadow: [
+              BoxShadow(
+                color: greyColor.withOpacity(.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              ),
+            ]),
+        child: Center(
+            child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: width * .02),
+          child: Row(
+            children: [
+              Text("Deleted"),
+            ],
+          ),
+        )),
+      ),
     );
   }
 
@@ -117,7 +121,7 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
     key.currentState?.removeItem(
         index,
         (context, animation) =>
-            buildCardAnimation(width, height, index, animation));
+            buildCardDeleteAnimation(width, height, index, animation));
   }
 
   void insertItem(int index) {
